@@ -144,5 +144,32 @@ router.get("/:listingId", async (req, res) => {
       .json({ message: "Listing can not found!", error: err.message });
   }
 });
+/*DELETE LISTINGS*/
+router.delete("/properties/:listingId", async (req, res) => {
+  try {
+    const { listingId } = req.params;
+    const listing = await Listing.findById(listingId);
+
+    if (!listing) {
+      return res.status(404).json({ message: "Listing not found!" });
+    }
+
+    const userId = req.user._id; // Replace this with your actual user ID fetching mechanism
+
+    if (listing.creator.toString() !== userId && !req.user.isAdmin) {
+      return res
+        .status(403)
+        .json({ message: "You do not have permission to delete this listing" });
+    }
+
+    await listing.remove();
+
+    res.status(200).json({ message: "Listing deleted successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Fail to delete listing", error: err.message });
+  }
+});
 
 module.exports = router;

@@ -5,6 +5,7 @@ import ListingCard from "../components/ListingCard";
 import { useEffect, useState } from "react";
 import { setPropertyList } from "../redux/state";
 import Loader from "../components/Loader";
+import MyListingCard from "../components/MyListingCard";
 // import Footer from "../components/Footer"
 
 const PropertyList = () => {
@@ -55,7 +56,7 @@ const PropertyList = () => {
             price,
             booking = false,
           }) => (
-            <ListingCard
+            <MyListingCard
               key={_id}
               listingId={_id}
               creator={creator}

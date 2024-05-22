@@ -36,21 +36,17 @@ router.patch("/:userId/:listingId", async (req, res) => {
         (item) => item._id.toString() !== listingId
       );
       await user.save();
-      res
-        .status(200)
-        .json({
-          message: "Listing is removed from wish list",
-          wishList: user.wishList,
-        });
+      res.status(200).json({
+        message: "Listing is removed from wish list",
+        wishList: user.wishList,
+      });
     } else {
       user.wishList.push(listing);
       await user.save();
-      res
-        .status(200)
-        .json({
-          message: "Listing is added to wish list",
-          wishList: user.wishList,
-        });
+      res.status(200).json({
+        message: "Listing is added to wish list",
+        wishList: user.wishList,
+      });
     }
   } catch (err) {
     console.log(err);
@@ -87,6 +83,30 @@ router.get("/:userId/reservations", async (req, res) => {
     res
       .status(404)
       .json({ message: "Can not find reservations!", error: err.message });
+  }
+});
+
+/* DELETE PROPERTY LISTING */
+router.delete("/:userId/properties/:listingId", async (req, res) => {
+  try {
+    const { userId, listingId } = req.params;
+    const listing = await Listing.findOneAndDelete({
+      _id: listingId,
+      creator: userId,
+    });
+
+    if (!listing) {
+      return res
+        .status(404)
+        .json({ message: "Listing not found or not authorized to delete!" });
+    }
+
+    res.status(200).json({ message: "Listing deleted successfully!" });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: "Failed to delete listing", error: err.message });
   }
 });
 
