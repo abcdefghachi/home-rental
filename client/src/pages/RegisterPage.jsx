@@ -60,14 +60,14 @@ const RegisterPage = () => {
       <div className="register_content">
         <form className="register_content_form" onSubmit={handleSubmit}>
           <input
-            placeholder="First Name"
+            placeholder="Tên"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
             required
           />
           <input
-            placeholder="Last Name"
+            placeholder="Họ"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
@@ -82,7 +82,7 @@ const RegisterPage = () => {
             required
           />
           <input
-            placeholder="Password"
+            placeholder="Mật khẩu"
             name="password"
             value={formData.password}
             onChange={handleChange}
@@ -90,7 +90,7 @@ const RegisterPage = () => {
             required
           />
           <input
-            placeholder="Confirm Password"
+            placeholder="Nhập lại mật khẩu"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
@@ -99,7 +99,7 @@ const RegisterPage = () => {
           />
 
           {!passwordMatch && (
-            <p style={{ color: "red" }}>Passwords are not matched!</p>
+            <p style={{ color: "red" }}>Mật khẩu không khớp!</p>
           )}
 
           <input
@@ -113,7 +113,7 @@ const RegisterPage = () => {
           />
           <label htmlFor="image">
             <img src="/assets/addImage.png" alt="add profile photo" />
-            <p>Upload Your Photo</p>
+            <p>Tải lên ảnh đại diện của bạn</p>
           </label>
 
           {formData.profileImage && (
@@ -124,10 +124,10 @@ const RegisterPage = () => {
             />
           )}
           <button type="submit" disabled={!passwordMatch}>
-            REGISTER
+            ĐĂNG KÝ
           </button>
         </form>
-        <a href="/login">Already have an account? Log In Here</a>
+        <a href="/login">Bạn đã có tài khoản ? Đăng nhập</a>
       </div>
     </div>
   );

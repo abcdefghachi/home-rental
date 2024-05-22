@@ -8,6 +8,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
+import { format } from "date-fns";
+import { vi } from "date-fns/locale"; // Import locale for Vietnamese
 
 const ListingCard = ({
   listingId,
@@ -121,10 +123,13 @@ const ListingCard = ({
       ) : (
         <>
           <p>
-            {startDate} - {endDate}
+            Từ ngày: {format(new Date(startDate), "dd/MM/yyyy", { locale: vi })}
           </p>
           <p>
-            <span>${totalPrice}</span> total
+            Đến ngày: {format(new Date(endDate), "dd/MM/yyyy", { locale: vi })}
+          </p>
+          <p>
+            <span>Tổng : ${totalPrice}</span>
           </p>
         </>
       )}

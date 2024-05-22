@@ -35,9 +35,11 @@ const Navbar = () => {
           placeholder="Search ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          required
         />
 
         <IoIosSearch
+          style={{ color: "#F8395A", fontWeight: "bold" }}
           onClick={() => {
             navigate(`/properties/search/${search}`);
           }}
@@ -92,10 +94,10 @@ const Navbar = () => {
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
-            <Link to={`/${user._id}/trips`}>Trip List</Link>
-            <Link to={`/${user._id}/wishList`}>Bộ sưu tập</Link>
-            <Link to={`/${user._id}/properties`}>Property List</Link>
-            <Link to={`/${user._id}/reservations`}>Đặt chỗ</Link>
+            <Link to={`/${user._id}/trips`}>Đã đặt</Link>
+            <Link to={`/${user._id}/reservations`}>Đang được đặt</Link>
+            <Link to={`/${user._id}/wishList`}>Yêu thích</Link>
+            <Link to={`/${user._id}/properties`}>Đã đăng tải</Link>
             <Link to="/create-listing">Tạo mới</Link>
 
             <Link

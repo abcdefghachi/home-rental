@@ -56,14 +56,14 @@ const LoginPage = () => {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">LOG IN</button>
+          <button type="submit">ĐĂNG NHẬP</button>
         </form>
-        <a href="/register">Don't have an account? Sign In Here</a>
+        <a href="/register">Bạn chưa có tài khoản ? Đăng ký ở đây</a>
       </div>
     </div>
   );

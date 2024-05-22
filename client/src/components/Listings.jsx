@@ -37,8 +37,6 @@ const Listings = () => {
     getFeedListings();
   }, [selectedCategory]);
 
-  console.log(listings);
-
   return (
     <>
       <div className="category-list">
@@ -74,6 +72,7 @@ const Listings = () => {
               booking = false,
             }) => (
               <ListingCard
+                key={_id} // Add the key prop here
                 listingId={_id}
                 creator={creator}
                 listingPhotoPaths={listingPhotoPaths}
